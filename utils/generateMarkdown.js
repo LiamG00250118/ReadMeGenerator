@@ -17,4 +17,68 @@ function generateMarkdown(data) {
 `;
 }
 
-module.exports = generateMarkdown;
+// module.exports = generateMarkdown;
+
+const inquirer = require("inquirer");
+const fs = require('fs');
+
+
+const errCallback = (err) => {
+  if (err) throw err;
+};
+
+let title = "";
+let description = "";
+let installation = "";
+let usage = "";
+let contribution = "";
+let test = "";
+let github = "";
+let email = "";
+
+inquirer
+  .prompt([
+    {
+      name: "title",
+      message: "Please enter the project title.",
+    },
+    {
+      name: "description",
+      message: "Enter your description",
+    },
+    {
+      name: "installation",
+      message: "Enter your installation instructions",
+    },
+    {
+      name: "usage",
+      message: "Enter your usage information",
+    },
+    {
+      name: "contribution",
+      message: "Enter your contribution guidelines",
+    },
+    {
+      name: "test",
+      message: "Enter your testing instructions",
+    },
+    {
+      name: "github",
+      message: "Enter your github username",
+    },
+    {
+      name: "email",
+      message: "Enter your email",
+    },
+  ])
+  .then((answerObj) => {
+    title = answerObj.title;
+    description = answerObj.description;
+    installation = answerObj.installation;
+    usage = answerObj.usage;
+    contribution = answerObj.contribution;
+    test = answerObj.test;
+    github = answerObj.github;
+    email = answerObj.email;
+    fs.writeFile("./README.md","test",errCallback);
+  });
