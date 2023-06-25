@@ -24,7 +24,9 @@ const fs = require('fs');
 
 
 const errCallback = (err) => {
-  if (err) throw err;
+  if (err) {
+    console.error(err);
+  }
 };
 
 let title = "";
@@ -80,5 +82,13 @@ inquirer
     test = answerObj.test;
     github = answerObj.github;
     email = answerObj.email;
-    fs.writeFile("./README.md","test",errCallback);
+    fs.writeFile("./README.md",
+    "#Title: \n" + title + "\n\n" + 
+    "##Description: \n" + description + "\n\n" + 
+    "##Installation Instructions: \n" + installation + "\n\n" + 
+    "##Contributions: \n" + contribution + "\n\n" + 
+    "##Tests: \n" + test + "\n\n" +
+    "##Github: \n" + github + "\n\n" + 
+    "##Email: \n" + email
+    ,errCallback);
   });
